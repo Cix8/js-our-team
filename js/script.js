@@ -33,10 +33,35 @@ const team = [
 
 console.log(team);
 
+const teamContainer = document.querySelector('.team-container');
+console.log(teamContainer);
+
 for (let i = 0; i < team.length; i++) {
-    const thisItem = team[i];
-    for (let key in thisItem) {
-        console.log(key + ':');
-        console.log(thisItem[key]);
+  const teamCard = document.createElement('div');
+  teamCard.classList.add('team-card');
+
+  const cardText = document.createElement('div');
+  cardText.classList.add('card-text');
+  
+  const thisArray = team[i];
+  let newElement;
+  
+  for (let key in thisArray) {
+    const thisItem = thisArray[key];
+    console.log(key + ':');
+    console.log(thisItem);
+    if (key === 'name') {
+      newElement = document.createElement('h3');
+    } else {
+      newElement = document.createElement('p');
     }
+    newElement.append(thisItem);
+    console.log(newElement);
+    cardText.append(newElement);
+    teamCard.append(cardText);
+  }
+
+  console.log(teamCard);
+  teamContainer.append(teamCard);
+  console.log(teamContainer);
 }
