@@ -40,6 +40,9 @@ for (let i = 0; i < team.length; i++) {
   const teamCard = document.createElement('div');
   teamCard.classList.add('team-card');
 
+  const cardImg = document.createElement('div');
+  cardImg.classList.add('card-image');
+
   const cardText = document.createElement('div');
   cardText.classList.add('card-text');
   
@@ -52,13 +55,28 @@ for (let i = 0; i < team.length; i++) {
     console.log(thisItem);
     if (key === 'name') {
       newElement = document.createElement('h3');
+    } else if (key === 'image') {
+      newElement = document.createElement('img');
     } else {
       newElement = document.createElement('p');
     }
-    newElement.append(thisItem);
-    console.log(newElement);
-    cardText.append(newElement);
-    teamCard.append(cardText);
+
+    let cardToAppend;
+
+    if (key === 'image') {
+      newElement.setAttribute('src', 'img/' + thisItem);
+      newElement.setAttribute('alt' , thisArray['name']);
+      cardToAppend = cardImg;
+    } else {
+      newElement.append(thisItem);
+      console.log(newElement);
+      cardToAppend = cardText;  
+    }
+
+    cardToAppend.append(newElement);
+    teamCard.append(cardToAppend);
+    teamCard.style.display = 'flex';
+    teamCard.style.flexDirection = 'column-reverse';
   }
 
   console.log(teamCard);
