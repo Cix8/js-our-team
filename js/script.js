@@ -55,6 +55,11 @@ addBtn.addEventListener('click', () => {
 })
 
 
+//                       FUNCTIONS
+
+/**
+ * Description is the main function that creates the elements based on the properties of the data objects, organizes and prints the DOM elements within the layout
+ */
 function showMembers() {
   const teamContainer = document.querySelector('.team-container');
   console.log(teamContainer);
