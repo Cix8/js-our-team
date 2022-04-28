@@ -33,53 +33,79 @@ const team = [
 
 console.log(team);
 
-const teamContainer = document.querySelector('.team-container');
-console.log(teamContainer);
+showMembers();
 
-for (let i = 0; i < team.length; i++) {
-  const teamCard = document.createElement('div');
-  teamCard.classList.add('team-card');
+const addBtn = document.getElementById('addMemberButton');
+console.log(addBtn);
 
-  const cardImg = document.createElement('div');
-  cardImg.classList.add('card-image');
+addBtn.addEventListener('click', () => {
+  const newName = document.getElementById('name').value;
+  const newRole = document.getElementById('role').value;
+  const newImg = document.getElementById('image').value;
 
-  const cardText = document.createElement('div');
-  cardText.classList.add('card-text');
-  
-  const thisArray = team[i];
-  let newElement;
-  
-  for (let key in thisArray) {
-    const thisItem = thisArray[key];
-    console.log(key + ':');
-    console.log(thisItem);
-    if (key === 'name') {
-      newElement = document.createElement('h3');
-    } else if (key === 'image') {
-      newElement = document.createElement('img');
-    } else {
-      newElement = document.createElement('p');
-    }
-
-    let cardToAppend;
-
-    if (key === 'image') {
-      newElement.setAttribute('src', 'img/' + thisItem);
-      newElement.setAttribute('alt' , thisArray['name']);
-      cardToAppend = cardImg;
-    } else {
-      newElement.append(thisItem);
-      console.log(newElement);
-      cardToAppend = cardText;  
-    }
-
-    cardToAppend.append(newElement);
-    teamCard.append(cardToAppend);
-    teamCard.style.display = 'flex';
-    teamCard.style.flexDirection = 'column-reverse';
+  const newMember = {
+    name: newName,
+    role: newRole,
+    image: newImg
   }
 
-  console.log(teamCard);
-  teamContainer.append(teamCard);
+  team.push(newMember);
+  console.log(team);
+  showMembers();
+})
+
+
+function showMembers() {
+  const teamContainer = document.querySelector('.team-container');
   console.log(teamContainer);
+
+  teamContainer.innerHTML = '';
+  
+  for (let i = 0; i < team.length; i++) {
+    const teamCard = document.createElement('div');
+    teamCard.classList.add('team-card');
+  
+    const cardImg = document.createElement('div');
+    cardImg.classList.add('card-image');
+  
+    const cardText = document.createElement('div');
+    cardText.classList.add('card-text');
+    
+    const thisArray = team[i];
+    let newElement;
+    
+    for (let key in thisArray) {
+      const thisItem = thisArray[key];
+      console.log(key + ':');
+      console.log(thisItem);
+      if (key === 'name') {
+        newElement = document.createElement('h3');
+      } else if (key === 'image') {
+        newElement = document.createElement('img');
+      } else {
+        newElement = document.createElement('p');
+      }
+  
+      let cardToAppend;
+  
+      if (key === 'image') {
+        newElement.setAttribute('src', 'img/' + thisItem);
+        newElement.setAttribute('alt' , thisArray['name']);
+        cardToAppend = cardImg;
+      } else {
+        newElement.append(thisItem);
+        console.log(newElement);
+        cardToAppend = cardText;  
+      }
+  
+      cardToAppend.append(newElement);
+      teamCard.append(cardToAppend);
+      teamCard.style.display = 'flex';
+      teamCard.style.flexDirection = 'column-reverse';
+    }
+  
+    console.log(teamCard);
+    teamContainer.append(teamCard);
+    console.log(teamContainer);
+  }
 }
