@@ -69,6 +69,8 @@ function showMembers() {
   for (let i = 0; i < team.length; i++) {
     const teamCard = document.createElement('div');
     teamCard.classList.add('team-card');
+    teamCard.style.display = 'flex';
+    teamCard.style.flexDirection = 'column-reverse';
   
     const cardImg = document.createElement('div');
     cardImg.classList.add('card-image');
@@ -105,10 +107,8 @@ function showMembers() {
   
       cardToAppend.append(newElement);
       teamCard.append(cardToAppend);
-      teamCard.style.display = 'flex';
-      teamCard.style.flexDirection = 'column-reverse';
     }
-  
+
     console.log(teamCard);
     teamContainer.append(teamCard);
     console.log(teamContainer);
